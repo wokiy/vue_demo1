@@ -19,6 +19,8 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue": "^2.5.2",
+    "better-scroll": "^0.1.15",
+    "jsonp": "^0.2.1",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
