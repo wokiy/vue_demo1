@@ -26,6 +26,7 @@ npm test
 ##项目笔记
   ###dom 重新渲染问题
     keep-alive 去解决dom重新渲染
+    
     新的vue-cli build 没有 dev-server 自己在webpack-dev-config.js配置就可以。
     
     
