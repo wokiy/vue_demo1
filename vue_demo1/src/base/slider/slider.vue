@@ -57,7 +57,6 @@
     methods: {
       _setSliderWidth(isResize) {
         this.children = this.$refs.sliderGroup.children
-        console.log(this.children.length)
         let width = 0
         let sliderWidth = this.$refs.slider.clientWidth
         for (let i = 0; i < this.children.length; i++) {
@@ -82,7 +81,6 @@
           snapThreshold: 0.3,
           snapSpeed: 400
         })
-        console.log(this.children.length)
         this.slider.on('scrollEnd', () => {
           let pageIndex = this.slider.getCurrentPage().pageX
           if(this.loop) {
@@ -103,7 +101,6 @@
 
       _initDots() {
         this.dots = new Array(this.children.length)
-        console.log(this.children.length)
       },
 
       _play() {
@@ -115,6 +112,9 @@
           this.slider.goToPage(pageIndex,0,400)
         },this.interval)
       }
+    },
+    destroyed () {
+      clearTimeout(this.timer)
     }
   }
 </script>

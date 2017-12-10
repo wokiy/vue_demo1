@@ -8,7 +8,7 @@ import Search from 'components/search/search'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  base: '/dist/',
   routes: [
     {
       path: '/',
