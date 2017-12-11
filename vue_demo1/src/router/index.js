@@ -4,11 +4,10 @@ import Recommend from 'components/recommend/recommend'
 import Singer from 'components/singer/singer'
 import  Rank from 'components/rank/rank'
 import Search from 'components/search/search'
-
 Vue.use(Router)
-
 export default new Router({
-  base: '/dist/',
+ /* base: '/dist/',*/
+  mode: 'history',
   routes: [
     {
       path: '/',

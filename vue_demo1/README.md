@@ -29,5 +29,6 @@ npm test
     
     新的vue-cli build 没有 dev-server 自己在webpack-dev-config.js配置就可以。
     
+    热门数据前十条获取出来
     
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

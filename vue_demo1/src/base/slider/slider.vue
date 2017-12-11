@@ -34,7 +34,7 @@
       return {
         dots: [],
         currentPageIndex: 0,
-        isResize:true
+
       }
     },
     mounted() {
@@ -42,18 +42,17 @@
         this._setSliderWidth()
         this._initDots()
         this._initSlider()
-
         if (this.autoPlay) {
           this._play()
         }
       }, 20)
-
       window.addEventListener('resize', () => {
         if (!this.slider) {
           return
         }
-        this._setSliderWidth(this.isResize)
+        this._setSliderWidth(true)
         this.slider.refresh()
+//        window.location.reload()
       })
     },
     activated() {
@@ -68,25 +67,30 @@
       clearTimeout(this.timer)
     },
     methods: {
-      _setSliderWidth() {
+      _setSliderWidth(isReset) {
         this.children = this.$refs.sliderGroup.children
+
+        console.log(this.$refs.sliderGroup.children.length)
 
         let width = 0
         let sliderWidth = this.$refs.slider.clientWidth
+
         for (let i = 0; i < this.children.length; i++) {
+
           let child = this.children[i]
           addClass(child, 'slider-item')
 
           child.style.width = sliderWidth + 'px'
           width += sliderWidth
         }
-        if (this.loop) {
+        if (this.loop && !isReset) {
           width += 2 * sliderWidth
         }
         this.$refs.sliderGroup.style.width = width + 'px'
       },
       _initDots() {
         this.dots = new Array(this.children.length)
+        console.log(this.dots)
       },
       _initSlider() {
         this.slider = new BScroll(this.$refs.slider, {
