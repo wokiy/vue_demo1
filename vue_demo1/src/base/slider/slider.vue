@@ -50,7 +50,6 @@
         if (!this.slider) {
           return
         }
-        window.location.reload()
         this._setSliderWidth(true)
         this.slider.refresh()
 //        window.location.reload()
