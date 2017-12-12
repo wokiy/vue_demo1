@@ -8,6 +8,8 @@
 
 <script>
   import {mapGetters} from 'vuex'
+  import {getSingerDetail} from 'api/singer'
+  import ERR_OK from 'api/config'
     export default {
       computed: {
         ...mapGetters([
@@ -16,6 +18,18 @@
       },
       created() {
         console.log(this.singer)
+        this._getDetail()
+      },
+      methods: {
+        _getDetail() {
+          if (!this.singer.id) {
+            getSingerDetail(this.singer.id).then((res) => {
+              if (res.code === ERROR) {
+                console.log(res.data.list)
+              }
+            })
+          }
+        }
       }
     }
 </script>
