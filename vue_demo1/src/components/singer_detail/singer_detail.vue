@@ -9,29 +9,50 @@
 <script>
   import {mapGetters} from 'vuex'
   import {getSingerDetail} from 'api/singer'
-  import ERR_OK from 'api/config'
-    export default {
-      computed: {
-        ...mapGetters([
-          'singer'
-        ])
-      },
-      created() {
-        console.log(this.singer)
-        this._getDetail()
-      },
-      methods: {
-        _getDetail() {
-          if (!this.singer.id) {
-            getSingerDetail(this.singer.id).then((res) => {
-              if (res.code === ERROR) {
-                console.log(res.data.list)
-              }
-            })
-          }
-        }
+  import {ERR_OK} from 'api/config'
+  import {createSong} from 'common/js/song'
+
+  export default {
+    data() {
+      return {
+        songs: []
       }
+    },
+    computed: {
+      ...mapGetters([
+        'singer'
+      ])
+    },
+    created() {
+      this._getDetail()
+    },
+    methods: {
+      _getDetail() {
+        if (!this.singer.id) {
+          this.$router.push('/singer')
+          return
+        }
+        getSingerDetail(this.singer.id).then((res) => {
+          if (res.code === ERR_OK) {
+            this.songs = this._nomalizeSongs(res.data.list)
+            console.log(this.songs)
+          }
+        })
+    },
+    _nomalizeSongs(list) {
+      //遍历list
+      let ret = []
+      list.forEach((item) => {
+        let {musicData} = item
+        //musicData 转化为 songs
+        if (musicData.songid && musicData.albummid) {
+          ret.push(createSong(musicData))
+        }
+      })
+      return ret
     }
+  }
+  }
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
@@ -46,7 +67,7 @@
     background: $color-background
 
     .slice-enter-active, .slide-leave-active
-      transition : all 0.3
+      transition: all 0.3
     .slide-enter, .slide-leave-to
-      transition : transform3d(100%, 0, 0)
+      transition: transform3d(100%, 0, 0)
 </style>
