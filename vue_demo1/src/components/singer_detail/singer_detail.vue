@@ -19,6 +19,12 @@
       }
     },
     computed: {
+      //mapGetters 语法糖 函数仅仅是将 store 中的 getter 映射到局部计算属性
+      /*mapGetters({
+          // 映射 `this.Singer` 为 `store.getters.singer`
+          Singer: 'singer'
+        })
+      * */
       ...mapGetters([
         'singer'
       ])
@@ -39,6 +45,7 @@
           }
         })
     },
+      //整理歌手的数据格式显示前台的手段
     _nomalizeSongs(list) {
       //遍历list
       let ret = []

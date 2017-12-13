@@ -83,9 +83,12 @@
         this.$router.push({
           path: `/singer/${singer.id}`
         })
+        //mutation 中[types.SET_SINGER] (state, singer)= >{ state.singer = singer}  更新state的数据
         this.setSinger(singer)
       },
+      //vuex提供的语法糖 升华开发流程
       ...mapMutations({
+        //Mutation是的事件字符串 调用对应 回调方法 singer 是传入的参数
         setSinger: 'SET_SINGER'
       })
     },
